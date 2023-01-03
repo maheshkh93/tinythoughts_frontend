@@ -1,23 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import UserGlobalContext from "./shared/Data/UserGlobalContext";
+import { Link, Navigate, Route, Routes } from "react-router-dom";
+import { useState } from "react";
+import Login from "./components/Login/Login";
+import PostList from "./components/PostList/PostList";
 
 function App() {
+  let [username, setGlobalUsername] = useState("");
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <UserGlobalContext.Provider
+        value={{ username: username, setGlobalUsername: setGlobalUsername }}
+      >
+        <div className="App">
+          <Routes>
+            <Route path="/login" element={<Login />} />
+
+            <Route path="/posts-list" element={<PostList />} />
+            <Route path="/" element={<Navigate to={"/login"} />} />
+          </Routes>
+        </div>
+      </UserGlobalContext.Provider>
     </div>
   );
 }
