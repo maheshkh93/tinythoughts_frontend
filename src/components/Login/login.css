@@ -1,5 +1,6 @@
 .login-page {
-    display: flex;
+    display: flex ;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     position: fixed;
@@ -7,14 +8,20 @@
     right: 0;
     top: 0;
     bottom: 0;
+    background-color: antiquewhite;
     
   }
   
   .login-form {
     width: 300px;
-    height: 300px;
-    padding: 2rem;
+    height: 350px;
+    padding: 1rem;
     background: rgba(255, 255, 255, 0.7);
+    box-shadow: 0 0 10px rgb(0, 0, 0);
     border-radius: 5px;
     text-align: center;
+  }
+
+  .link{
+    color: blue;
   }

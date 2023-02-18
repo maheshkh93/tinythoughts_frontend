@@ -73,7 +73,7 @@ export default function Login() {
     <div className="login-page">
       <h1>TinyThouhts</h1>
       <div class="login-form">
-        <h2>LogIn/SignUp</h2>
+        <h2>Login</h2>
         <TextField
           variant="outlined"
           value={username}
@@ -100,7 +100,7 @@ export default function Login() {
         <a className="link">Forgotten Password?</a>
         <hr></hr>
         <Button variant="outlined" onClick={signUp}>
-          SignUp
+          Create Account
         </Button>
       </div>
     </div>
