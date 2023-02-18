@@ -79,10 +79,11 @@ export default function PostList() {
             <Post item={item} />
           </>
         ))}
-
-        <Button variant="contained" onClick={loadMore}>
-          Load more posts...
-        </Button>
+        <div>
+          <Button variant="contained" onClick={loadMore}>
+            Load more posts...
+          </Button>
+        </div>
       </div>
     </div>
   );
