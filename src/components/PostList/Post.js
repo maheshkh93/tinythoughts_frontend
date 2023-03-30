@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import UserGlobalContext from "../../shared/Data/UserGlobalContext.js";
 import {
+  customDelete,
   customGet,
   customPatch,
   customPost,
@@ -36,6 +37,12 @@ export default function Post({ item }) {
       setLikes(response.likes);
     });
   }
+
+  function deletepost() {
+    customDelete(`/posts/${item._id}`).then((response) => {
+      alert("post deleted");
+    });
+  }
   return (
     <>
       <div className="post-item-container">
@@ -48,7 +55,7 @@ export default function Post({ item }) {
 
         <div className="action-container">
           <div>
-            <span onClick={increaseLikes}>
+            <span className="likeButton" onClick={increaseLikes}>
               <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
             </span>
             <span onClick={loadLikes}>
@@ -61,7 +68,7 @@ export default function Post({ item }) {
               ))}
             </ul>
           </div>
-          <div>
+          {/* <div>
             <span>
               <i
                 class="fa fa-comment-o"
@@ -73,10 +80,10 @@ export default function Post({ item }) {
             </span>
 
             {showcard ? <CommentCard item={item} /> : <></>}
-          </div>
+          </div> */}
           <div>
-            <span onClick={increaseLikes}>
-              <i class="fa fa-share-square-o" aria-hidden="true"></i>
+            <span onClick={deletepost}>
+              <i class="fa fa-trash-o" aria-hidden="true"></i>
             </span>
           </div>
         </div>

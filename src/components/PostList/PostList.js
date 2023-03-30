@@ -6,7 +6,6 @@ import Header from "../../shared/Header";
 import "./post.css";
 // import PortalsUsername from "../../PortalsUsername";
 import { customGet, customPost } from "../../Utilitites/custom-fetch";
-import Body from "../../shared/Body";
 
 export default function PostList() {
   const [username, setUsername] = useState("");
@@ -17,18 +16,16 @@ export default function PostList() {
     let usernameValue = localStorage.getItem("usernameValue");
     setUsername(usernameValue);
   }, []);
-
   useEffect(() => {
     customGet("/posts?page=" + 0).then((response) => {
       setPosts(response);
     });
   }, []);
-
-  useEffect(() => {
-    customGet("/posts?page=" + 0).then((response) => {
-      setPosts(response);
-    });
-  }, [createPost]);
+  // useEffect(() => {
+  //   customGet("/posts?page=" + 0).then((response) => {
+  //     setPosts(response);
+  //   });
+  // }, [createPost]);
 
   function createPost() {
     let obj = {
@@ -43,8 +40,10 @@ export default function PostList() {
         setContent("");
       }
     });
+    customGet("/posts?page=" + 0).then((response) => {
+      setPosts(response);
+    });
   }
-
   function loadMore() {
     customGet("/posts?page=" + posts.length * 1).then((response) => {
       setPosts(posts.concat(response));
@@ -54,37 +53,40 @@ export default function PostList() {
   return (
     <div>
       <Header></Header>
+      <div className="mainContainer">
+        <div className="sideBar"></div>
+        <div className="posts">
+          <div className="post-item-container">
+            <span className="post-header">
+              <Avatar>{username.charAt(0)}</Avatar>
+              <span>{username}</span>
+            </span>
+            <input
+              className="postinput"
+              placeholder="Write Your Thoughts"
+              value={content}
+              onChange={(e) => setContent(e.target.value)}
+            />
 
-      <div className="posts">
-        <div className="post-item-container">
-          <span className="post-header">
-            <Avatar>{username.charAt(0)}</Avatar>
-            <span>{username}</span>
-          </span>
-          <input
-            className="postinput"
-            placeholder="Write Your Thoughts"
-            value={content}
-            onChange={(e) => setContent(e.target.value)}
-          />
+            <Button variant="contained" onClick={createPost}>
+              Post
+            </Button>
+          </div>
+          <hr></hr>
 
-          <Button variant="contained" onClick={createPost}>
-            Post
-          </Button>
-        </div>
-        <hr></hr>
-
-        {posts.map((item) => (
-          <>
-            <Post item={item} />
-          </>
-        ))}
-        <div>
-          <Button variant="contained" onClick={loadMore}>
-            Load more posts...
-          </Button>
+          {posts.map((item) => (
+            <>
+              <Post item={item} />
+            </>
+          ))}
+          <div>
+            <Button variant="contained" onClick={loadMore}>
+              Load more posts...
+            </Button>
+          </div>
         </div>
       </div>
+      <div></div>
     </div>
   );
 }

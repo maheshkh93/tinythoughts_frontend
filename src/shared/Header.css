@@ -1,0 +1,36 @@
+.header{
+  
+    height: 60px;
+    z-index: 10;
+    position: sticky;
+    top: 0;
+    background-color:rgb(255, 255, 255);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 0 5px black;
+  }
+  .header h1{
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    color: aliceblue;
+    margin: 3px;
+    text-align: center;
+    background-image: linear-gradient(rgb(219, 54, 197), rgb(255, 38, 0), green);
+  }
+  .searchBar{
+    height: 30px;
+    width: auto;
+    background-color: rgb(243, 232, 232);
+    padding: 3px 20px;
+    border-radius:15px 
+  }
+ .header1{
+    width: 20%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+ }
